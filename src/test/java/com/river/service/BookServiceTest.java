@@ -10,6 +10,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -43,5 +47,13 @@ public class BookServiceTest {
         when(bookDaoMock.findOne(anyString())).thenReturn(new Book());
         Book book = classUnderTest.getBook(givenBookId);
         assertNotNull(book);
+    }
+
+    @Test
+    public void whenGetBooksThenReturnListOfBooks() {
+        List<Book> expectedBooks = Arrays.asList(new Book(), new Book());
+        when(bookDaoMock.findAll()).thenReturn(expectedBooks);
+        List<Book> actualBooks = classUnderTest.getBooks();
+        assertEquals(expectedBooks, actualBooks);
     }
 }
