@@ -1,0 +1,8 @@
+.idea/
+*.im
+target
+
+# Gradle:
+.idea/gradle.xml
+.idea/libraries
+.gradle/
